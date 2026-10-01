@@ -5,7 +5,7 @@
 
 ## 사용자 확정 지침
 
-- Unity MCP로 실제 Editor 상태를 확인하고 한국어로 짧게 보고한 뒤 수정한다. 경로·Transform·방향을 추측하지 않는다.
+- Unity MCP와 Unity CLI를 사용해 실제 Editor 상태를 확인하고 한국어로 짧게 보고한 뒤 수정한다. 경로·Transform·방향을 추측하지 않는다.
 - 유일한 대상 Scene은 `Assets/Scenes/main_playoursound.unity`. 장구·사방치기 Scene은 열거나 저장하지 않는다.
 - XR Rig Transform, XR 이동/Interaction, Terrain, KHS 환경, 건축물, 전체 Lighting, 기존 Manager와 게임 로직을 보존한다.
 - **별도 Scene 백업 파일을 만들지 않는다.** 사용자는 Git 커밋으로 백업과 이력을 관리할 예정이다. 현재 커밋·푸시는 실행하지 않았다.
@@ -129,7 +129,7 @@ RouteGuide
 ## 다음 세션과 문서 관리
 
 1. 이 문서와 WORKLOG의 최신 항목, Git 변경 목록을 읽는다.
-2. Unity MCP로 연결 인스턴스, Unity 버전, 열린 Scene과 미저장 상태, XR 기준점, 실제 Hierarchy·목적지·TerrainCollider·재질·Console을 재확인한다. 불명확한 다른 Scene의 미저장 변경이 있으면 수정하지 않는다.
+2. Unity MCP와 Unity CLI를 사용해 연결 인스턴스, Unity 버전, 열린 Scene과 미저장 상태, XR 기준점, 실제 Hierarchy·목적지·TerrainCollider·재질·Console을 재확인한다. 불명확한 다른 Scene의 미저장 변경이 있으면 수정하지 않는다.
 3. 사용자 직접 변경을 보존하고, 새 요청의 범위를 확인한 뒤 필요한 부분만 작업한다. 별도 백업 파일을 생성하지 않는다.
 4. 스토리 확정 후 초대 문구·문양·잔칫상·천막을 다듬는다. 입구 이후 두 문까지의 유도는 추가 요청 시 진행한다.
 5. 관련 작업마다 HANDOFF를 최신 상태로 갱신하고 WORKLOG에 날짜·변경 파일·검증·미검증을 추가한다. 재질 변경 시 현재 이미지도 갱신한다.
@@ -138,7 +138,7 @@ RouteGuide
 
 다음 세션 시작용 문구:
 
-> docs/entrance-route-guide/HANDOFF.md와 WORKLOG.md를 읽고 Unity MCP로 현재 상태부터 확인해줘. main_playoursound 입구 안내 작업을 이어가되 XR과 기존 환경을 보존하고 별도 백업 파일은 만들지 마. 추가 일반 재질은 현재 Lit이며 Unlit 적용은 먼저 내 확인을 받아야 해. 목적지는 Door01k (3) 장구, Door01k (7) 사방치기야. 실제 수정 전 확인 결과와 이번 요청에 해당하는 작업 범위를 짧게 보고해줘.
+> docs/entrance-route-guide/HANDOFF.md와 WORKLOG.md를 읽고 Unity MCP와 Unity CLI로 현재 상태부터 확인해줘. main_playoursound 입구 안내 작업을 이어가되 XR과 기존 환경을 보존하고 별도 백업 파일은 만들지 마. 추가 일반 재질은 현재 Lit이며 Unlit 적용은 먼저 내 확인을 받아야 해. 목적지는 Door01k (3) 장구, Door01k (7) 사방치기야. 실제 수정 전 확인 결과와 이번 요청에 해당하는 작업 범위를 짧게 보고해줘.
 
 ## Naganeupseong 기존 재질 재사용 검토 — 2026-09-11
 
