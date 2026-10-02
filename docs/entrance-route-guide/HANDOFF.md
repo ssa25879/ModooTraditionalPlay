@@ -1,11 +1,22 @@
 # 전통마을 입구 길 안내 — 현재 상태와 다음 작업 인계
 
-최종 갱신: 2026-09-11 (KST). 프로젝트: `D:/work/ModooTraditionalPlay`.
+최종 갱신: 2026-10-02 (KST). 프로젝트: `D:/work/ModooTraditionalPlay`.
 이 문서는 최신 상태 기준이며, 과거 작업 경위는 [WORKLOG.md](WORKLOG.md)를 참고한다. 과거 로그의 Unlit 적용 기록은 아래 Lit 점검 결과로 대체된다.
+
+## 2026-10-02 최종 적용
+
+- 기존 경로 깃발 11개는 이순신 Bold 세로 안내와 앞뒷면 UV가 보정된 복제 메시를 사용한다. 원본 메시·공유 천 재질은 유지했다.
+- 메인 씬의 `JangguDoorUI`, `SabangchigiDoorUI`는 기존 목재 안내판으로 복원했다. 원본 글꼴·색상·텍스트 위치와 문구·문 전환 참조를 유지한다. 반투명 패널은 메인 씬에 없다.
+- 두 문 깃발은 안내판 옆에 배치했다. 장구 `(466.1942, 10.3478, 665.2410)`, 사방치기 `(489.8367, 9.7928, 665.5720)`. 두 깃발의 등불·연결 팔은 제거했으며 안내면은 마을 입구에서 접근하는 길을 향한다. Terrain 높이에 맞췄고 장식용 Collider는 비활성이다. 기존 경로 깃발의 등불은 유지한다.
+- 반투명 안내판은 `Assets/RouteGuide/Entrance/Prefabs/JangguFloatingDoorPanel.prefab`, `SabangchigiFloatingDoorPanel.prefab`으로 보존했다. 청록 반투명 Lit 패널·진한 글자 바탕·테두리·제목 이순신 Bold·본문 이순신돋움 M 연결을 유지한다. 목재 면·기둥은 프리팹에 포함하지 않았다. 프리팹은 메인 씬에 배치하지 않았다.
+- 기존 `DoorHoverFeedback`의 조준 문구·글자 강조는 목재판에서 유지한다. 테두리 강조 기능은 보존했으나 메인 문의 `panelBorders`는 비워 두었다. 추후 반투명 프리팹을 사용할 때 해당 문 컴포넌트의 titleText/instructionText 및 네 테두리를 연결한다.
+- 제공 TTF 5종 및 프리팹용 정적 TMP 폰트 2개는 `Assets/RouteGuide/Entrance/Fonts/YiSunShin/`, 메시·텍스처·재질은 `Assets/RouteGuide/Entrance/GuideFlags/`에 있다. README와 LICENSE-NOTES.txt를 참고한다.
+- 현재 메인 씬 렌더: `images/20261002-Janggu-adjacent-door-flag.png`, `images/20261002-Sabangchigi-adjacent-door-flag.png`. `*-final-vr-ui.png`는 반투명 디자인과 강조 기능의 이전 검증 기록이다. 미확정 반대편 배치 이미지·임시 Editor 스크립트는 정리했다.
+- Unity에서 프리팹 생성·재질 영속 참조·원본 목재판 복원·등불 제거·Terrain/진입 방향 확인, 메인 씬 렌더 및 저장을 검증했다. 실제 HMD 가독성과 트리거 씬 이동은 이번 작업에서 검증하지 않았다. XR Rig·Terrain·환경·문 전환 로직과 타 게임 씬은 변경하지 않았다.
 
 ## 사용자 확정 지침
 
-- Unity MCP로 실제 Editor 상태를 확인하고 한국어로 짧게 보고한 뒤 수정한다. 경로·Transform·방향을 추측하지 않는다.
+- Unity MCP와 Unity CLI를 사용해 실제 Editor 상태를 확인하고 한국어로 짧게 보고한 뒤 수정한다. 경로·Transform·방향을 추측하지 않는다.
 - 유일한 대상 Scene은 `Assets/Scenes/main_playoursound.unity`. 장구·사방치기 Scene은 열거나 저장하지 않는다.
 - XR Rig Transform, XR 이동/Interaction, Terrain, KHS 환경, 건축물, 전체 Lighting, 기존 Manager와 게임 로직을 보존한다.
 - **별도 Scene 백업 파일을 만들지 않는다.** 사용자는 Git 커밋으로 백업과 이력을 관리할 예정이다. 현재 커밋·푸시는 실행하지 않았다.
@@ -129,7 +140,7 @@ RouteGuide
 ## 다음 세션과 문서 관리
 
 1. 이 문서와 WORKLOG의 최신 항목, Git 변경 목록을 읽는다.
-2. Unity MCP로 연결 인스턴스, Unity 버전, 열린 Scene과 미저장 상태, XR 기준점, 실제 Hierarchy·목적지·TerrainCollider·재질·Console을 재확인한다. 불명확한 다른 Scene의 미저장 변경이 있으면 수정하지 않는다.
+2. Unity MCP와 Unity CLI를 사용해 연결 인스턴스, Unity 버전, 열린 Scene과 미저장 상태, XR 기준점, 실제 Hierarchy·목적지·TerrainCollider·재질·Console을 재확인한다. 불명확한 다른 Scene의 미저장 변경이 있으면 수정하지 않는다.
 3. 사용자 직접 변경을 보존하고, 새 요청의 범위를 확인한 뒤 필요한 부분만 작업한다. 별도 백업 파일을 생성하지 않는다.
 4. 스토리 확정 후 초대 문구·문양·잔칫상·천막을 다듬는다. 입구 이후 두 문까지의 유도는 추가 요청 시 진행한다.
 5. 관련 작업마다 HANDOFF를 최신 상태로 갱신하고 WORKLOG에 날짜·변경 파일·검증·미검증을 추가한다. 재질 변경 시 현재 이미지도 갱신한다.
@@ -138,7 +149,7 @@ RouteGuide
 
 다음 세션 시작용 문구:
 
-> docs/entrance-route-guide/HANDOFF.md와 WORKLOG.md를 읽고 Unity MCP로 현재 상태부터 확인해줘. main_playoursound 입구 안내 작업을 이어가되 XR과 기존 환경을 보존하고 별도 백업 파일은 만들지 마. 추가 일반 재질은 현재 Lit이며 Unlit 적용은 먼저 내 확인을 받아야 해. 목적지는 Door01k (3) 장구, Door01k (7) 사방치기야. 실제 수정 전 확인 결과와 이번 요청에 해당하는 작업 범위를 짧게 보고해줘.
+> docs/entrance-route-guide/HANDOFF.md와 WORKLOG.md를 읽고 Unity MCP와 Unity CLI로 현재 상태부터 확인해줘. main_playoursound 입구 안내 작업을 이어가되 XR과 기존 환경을 보존하고 별도 백업 파일은 만들지 마. 추가 일반 재질은 현재 Lit이며 Unlit 적용은 먼저 내 확인을 받아야 해. 목적지는 Door01k (3) 장구, Door01k (7) 사방치기야. 실제 수정 전 확인 결과와 이번 요청에 해당하는 작업 범위를 짧게 보고해줘.
 
 ## Naganeupseong 기존 재질 재사용 검토 — 2026-09-11
 
