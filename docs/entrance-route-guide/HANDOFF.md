@@ -6,14 +6,13 @@
 ## 2026-10-02 최종 적용
 
 - 기존 경로 깃발 11개는 이순신 Bold 세로 안내와 앞뒷면 UV가 보정된 복제 메시를 사용한다. 원본 메시·공유 천 재질은 유지했다.
-- 장구·사방치기 문 안내 옆에 따뜻한 미색 깃발을 한 개씩 추가했다. 각각 `(466.1942, 10.3478, 665.2410)`, `(489.8367, 9.7928, 665.5720)`이며 장식용 Collider는 비활성이다.
-- `JangguDoorUI`, `SabangchigiDoorUI`의 목재 면·기둥을 비활성화하고 `FloatingPanel`을 추가했다. 청록 반투명 URP/Lit 패널과 진한 글자 바탕, 제목 이순신 Bold / 본문 이순신돋움 M을 사용한다. 문구와 기존 문 전환 참조는 유지했다.
-- `DoorHoverFeedback`은 조준 시 제목·문구와 테두리를 금색으로 강조하고, 조준 해제·비활성화 시 원래 상태로 복원한다. 패널에는 Collider를 추가하지 않았다.
-- 제공 TTF 5종 및 정적 TMP 폰트 2개는 `Assets/RouteGuide/Entrance/Fonts/YiSunShin/`, 메시·텍스처·재질은 `Assets/RouteGuide/Entrance/GuideFlags/`에 있다. 해당 폴더 README와 LICENSE-NOTES.txt를 참고한다.
-- 비교용 Editor 스크립트·미사용 시안·임시 씬은 제거했다. 최종 기본/조준 렌더는 `images/20261002-Janggu-final-vr-ui.png`, `images/20261002-Sabangchigi-final-vr-ui.png`에 보존한다.
-- 컴파일, 글리프 포함 여부, 테두리 8개 연결, 강조/복원 및 공유 재질 불변, 씬 저장·재열기를 확인했다. 실제 HMD 가독성과 트리거 씬 이동은 이번 작업에서 검증하지 않았다. XR Rig·Terrain·문 전환 로직과 타 게임 씬은 변경하지 않았다.
-
-아래 초기 안내판 구조·상태 기록에서 두 문의 목재판은 위 최종 적용으로 대체되었다.
+- 메인 씬의 `JangguDoorUI`, `SabangchigiDoorUI`는 기존 목재 안내판으로 복원했다. 원본 글꼴·색상·텍스트 위치와 문구·문 전환 참조를 유지한다. 반투명 패널은 메인 씬에 없다.
+- 두 문 깃발은 안내판 옆에 배치했다. 장구 `(466.1942, 10.3478, 665.2410)`, 사방치기 `(489.8367, 9.7928, 665.5720)`. 두 깃발의 등불·연결 팔은 제거했으며 안내면은 마을 입구에서 접근하는 길을 향한다. Terrain 높이에 맞췄고 장식용 Collider는 비활성이다. 기존 경로 깃발의 등불은 유지한다.
+- 반투명 안내판은 `Assets/RouteGuide/Entrance/Prefabs/JangguFloatingDoorPanel.prefab`, `SabangchigiFloatingDoorPanel.prefab`으로 보존했다. 청록 반투명 Lit 패널·진한 글자 바탕·테두리·제목 이순신 Bold·본문 이순신돋움 M 연결을 유지한다. 목재 면·기둥은 프리팹에 포함하지 않았다. 프리팹은 메인 씬에 배치하지 않았다.
+- 기존 `DoorHoverFeedback`의 조준 문구·글자 강조는 목재판에서 유지한다. 테두리 강조 기능은 보존했으나 메인 문의 `panelBorders`는 비워 두었다. 추후 반투명 프리팹을 사용할 때 해당 문 컴포넌트의 titleText/instructionText 및 네 테두리를 연결한다.
+- 제공 TTF 5종 및 프리팹용 정적 TMP 폰트 2개는 `Assets/RouteGuide/Entrance/Fonts/YiSunShin/`, 메시·텍스처·재질은 `Assets/RouteGuide/Entrance/GuideFlags/`에 있다. README와 LICENSE-NOTES.txt를 참고한다.
+- 현재 메인 씬 렌더: `images/20261002-Janggu-adjacent-door-flag.png`, `images/20261002-Sabangchigi-adjacent-door-flag.png`. `*-final-vr-ui.png`는 반투명 디자인과 강조 기능의 이전 검증 기록이다. 미확정 반대편 배치 이미지·임시 Editor 스크립트는 정리했다.
+- Unity에서 프리팹 생성·재질 영속 참조·원본 목재판 복원·등불 제거·Terrain/진입 방향 확인, 메인 씬 렌더 및 저장을 검증했다. 실제 HMD 가독성과 트리거 씬 이동은 이번 작업에서 검증하지 않았다. XR Rig·Terrain·환경·문 전환 로직과 타 게임 씬은 변경하지 않았다.
 
 ## 사용자 확정 지침
 
