@@ -13,6 +13,7 @@ public sealed class DoorHoverFeedback : MonoBehaviour
     [SerializeField] private XRBaseInputInteractor leftController;
     [SerializeField] private XRBaseInputInteractor rightController;
     [SerializeField] private Color highlightColor = new Color(1f, 0.8f, 0.35f, 1f);
+    [SerializeField] private Renderer[] panelBorders;
 
     private XRSimpleInteractable interactable;
     private string originalText;
@@ -20,6 +21,7 @@ public sealed class DoorHoverFeedback : MonoBehaviour
     private Color originalTitleColor;
     private bool initialized;
     private bool highlighted;
+    private MaterialPropertyBlock borderProperties;
 
     private void Awake()
     {
@@ -55,6 +57,18 @@ public sealed class DoorHoverFeedback : MonoBehaviour
         instructionText.text = value ? "트리거를 누르세요" : originalText;
         instructionText.color = value ? highlightColor : originalInstructionColor;
         titleText.color = value ? highlightColor : originalTitleColor;
+        if (panelBorders == null)
+            return;
+        borderProperties ??= new MaterialPropertyBlock();
+        foreach (var border in panelBorders)
+        {
+            if (border == null || border.sharedMaterial == null)
+                continue;
+            border.GetPropertyBlock(borderProperties);
+            borderProperties.SetColor("_BaseColor", value ? highlightColor : border.sharedMaterial.GetColor("_BaseColor"));
+            borderProperties.SetColor("_EmissionColor", value ? highlightColor * 0.35f : border.sharedMaterial.GetColor("_EmissionColor"));
+            border.SetPropertyBlock(borderProperties);
+        }
     }
 
     private void OnDisable() => SetHighlighted(false);
